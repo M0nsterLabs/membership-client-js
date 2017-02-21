@@ -1,6 +1,6 @@
 {
   "name": "tm-memberships-api-client-js",
-  "version": "1.0.14",
+  "version": "0.0.0",
   "main": "dist/index.js",
   "scripts": {
     "predoc": "npm run build",
@@ -15,13 +15,13 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/M0nsterLabs/products-client-js.git"
+    "url": "git@github.com:stevenReed/memberships-client-js.git"
   },
   "bugs": {
-    "url": "https://github.com/M0nsterLabs/products-client-js/issues"
+    "url": "https://github.com/stevenReed/memberships-client-js/issues"
   },
-  "homepage": "https://github.com/M0nsterLabs/products-client-js#readme",
-  "description": "Products API JS client",
+  "homepage": "https://github.com/stevenReed/memberships-client-js",
+  "description": "Memberships API JS client",
   "babel": {
     "presets": [
       "latest",
