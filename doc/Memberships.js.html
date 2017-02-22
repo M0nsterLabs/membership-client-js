@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Memberships.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Memberships.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i &lt; props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _isomorphicFetch = require('isomorphic-fetch');
+
+var _isomorphicFetch2 = _interopRequireDefault(_isomorphicFetch);
+
+var _lodash = require('lodash');
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
+function _interopRequireDefault(obj) { return obj &amp;&amp; obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * Memberships API JS client.
+ *
+ * In order to use Memberships API you should create an instance of this class.
+ * ~~~~
+ * import Memberships from "tm-memberships-api-client-js";
+ * const products = new Memberships ('http://service-memberships.dev/api/v1', 'en');
+ * ~~~~
+ * @constructor Memberships
+ */
+var Memberships = function () {
+  function Memberships(url) {
+    var locale = arguments.length > 1 &amp;&amp; arguments[1] !== undefined ? arguments[1] : 'en';
+
+    _classCallCheck(this, Memberships);
+
+    this.locale = null;
+    this.url = null;
+
+    this.locale = locale;
+    this.url = url;
+  }
+
+  /**
+   * Return list of membership groups.
+   * @param params {Object} Membership groups parameters
+   * &lt;pre>
+   *   {
+   *    type_id: Number
+   *   }
+   * &lt;/pre>
+   * @returns {Object} &lt;pre>{
+   * "currentPageIndex":1,
+   * "totalCount":11,
+   * "lastPageIndex":6,
+   * "items": [
+   *   {
+   *     "id":"1",
+   *     "name":"Name",
+   *     "active_icon":"http://s3.amazonaws.com/doc/2017-02-02/",
+   *     "inactive_icon":"http://s3.amazonaws.com/doc/2017-02-02/",
+   *     "type_id":"17763",
+   *   }, ...]
+   *  }&lt;/pre>
+   * @method Memberships#getMembershipGroups
+   */
+
+
+  _createClass(Memberships, [{
+    key: 'getMembershipGroups',
+    value: function getMembershipGroups(token) {
+      var params = arguments.length > 1 &amp;&amp; arguments[1] !== undefined ? arguments[1] : {};
+
+      return false;
+    }
+
+    /**
+     * Return list of membership groups.
+     * @param params {Object} Membership groups parameters
+     * &lt;pre>
+     *   {
+     *    group_id: Number
+     *   }
+     * &lt;/pre>
+     * @returns {Object} &lt;pre>{
+     * "currentPageIndex":1,
+     * "totalCount":11,
+     * "lastPageIndex":6,
+     * "items": [
+     *   {
+     *    "id":"1",
+     *    "title":"Premium",
+     *    "descriptions":"Example description",
+     *    "group_id":"1",
+     *    "price": 199,
+     *    "max_downloads":"10",
+     *    "duration_days":"30",
+     *    }, ...]
+     *  }&lt;/pre>
+     * @method Memberships#getMemberships
+     */
+
+  }, {
+    key: 'getMemberships',
+    value: function getMemberships() {
+      var params = arguments.length > 0 &amp;&amp; arguments[0] !== undefined ? arguments[0] : {};
+
+      return false;
+    }
+
+    /**
+     * Return list of subscriptions
+     .
+     * @param token {String} User token
+     * @param params {Object} Membership groups parameters
+     * &lt;pre>
+     *   {
+     *    status : String,
+     *    membership_id : Number,
+     *    group_id : Number
+     *   }
+     * &lt;/pre>
+     * @returns {Object} &lt;pre>{
+     * "currentPageIndex":1,
+     * "totalCount":11,
+     * "lastPageIndex":6,
+     * "items": [
+     *   {
+     *    "id":"1",
+     *    "membership": {
+     *       "id":"1",
+     *       "title":"Premium",
+     *       "descriptions":"Example description",
+     *       "group_id":"1",
+     *       "price": 199,
+     *       "max_downloads":"10",
+     *       "duration_days":"30",
+     *    },
+     *    "user_id":"12345",
+     *    "status":"active"
+     *    "end_date":"1038444",
+     *    "downloads":"0",
+     *    "downloads_quota": 100,
+     *   }, ...]
+     *  }&lt;/pre>
+     * @method Memberships#getListOfSubscriptions
+     */
+
+  }, {
+    key: 'getListOfSubscriptions',
+    value: function getListOfSubscriptions(token) {
+      var params = arguments.length > 1 &amp;&amp; arguments[1] !== undefined ? arguments[1] : {};
+
+      return false;
+    }
+
+    /**
+     * Return subscription
+     .
+     * @param token {String} User token
+     * @returns {Object} &lt;pre>{
+     *  "id":"1",
+     *  "membership": {
+     *    "id":"1",
+     *    "title":"Premium",
+     *    "descriptions":"Example description",
+     *    "group_id":"1",
+     *    "price": 199,
+     *    "max_downloads":"10",
+     *    "duration_days":"30",
+     *  },
+     *  "user_id":"12345",
+     *  "status":"active"
+     *  "end_date":"1038444",
+     *  "downloads":"0",
+     *  "downloads_quota": 100,
+     * }&lt;/pre>
+     * @method Memberships#getSubscription
+     */
+
+  }, {
+    key: 'getSubscription',
+    value: function getSubscription(token) {
+      var params = arguments.length > 1 &amp;&amp; arguments[1] !== undefined ? arguments[1] : {};
+
+      return false;
+    }
+
+    /**
+     * Return list of downloads.
+     * @param token {String} User token
+     * @returns {Object} &lt;pre>{
+     * "currentPageIndex":1,
+     * "totalCount":11,
+     * "lastPageIndex":6,
+     * "items": [
+     *   {
+     *     "id":"1",
+     *     "product_id":"143142",
+     *     "created_at":"12345"
+     *   }, ...]
+     *  }&lt;/pre>
+     * @method Memberships#getListOfDownloads
+     */
+
+  }, {
+    key: 'getListOfDownloads',
+    value: function getListOfDownloads(token) {
+      var params = arguments.length > 1 &amp;&amp; arguments[1] !== undefined ? arguments[1] : {};
+
+      return false;
+    }
+  }]);
+
+  return Memberships;
+}();
+
+exports.default = Memberships;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Memberships.html">Memberships</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Wed Feb 22 2017 17:59:03 GMT+0200 (EET)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
