@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-fetch';
+import serialize from 'tm-serialize';
 import _ from 'lodash';
 /**
  * Memberships API JS client.
@@ -27,38 +28,41 @@ export default class Memberships {
    *    type_id: Number
    *   }
    * </pre>
-   * @returns {Object} <pre>{
-   * "currentPageIndex":1,
-   * "totalCount":11,
-   * "lastPageIndex":6,
-   * "items": [
+   * @returns {Array} <pre>[
    *   {
    *     "id":"1",
    *     "name":"Name",
    *     "active_icon":"http://s3.amazonaws.com/doc/2017-02-02/",
    *     "inactive_icon":"http://s3.amazonaws.com/doc/2017-02-02/",
    *     "type_id":"17763",
-   *   }, ...]
-   *  }</pre>
+   *   }, ...]</pre>
    * @method Memberships#getMembershipGroups
    */
-  getMembershipGroups (token, params = {}) {
-    return false;
+  async getMembershipGroups (token, params = {}) {
+    if (!token.length) {
+      throw new Error('Token can`t defined');
+    }
+    params = {...params, ...{locale : this.locale}};
+    const response = await fetch(`${this.url}/memberships-groups?${serialize(params)}`, {
+      headers : new Headers({
+        'Authorization' : token
+      })
+    });
+    if (response.status >= 400) {
+      throw new Error('Bad server response');
+    }
+    return await response.json();
   }
 
   /**
-   * Return list of membership groups.
-   * @param params {Object} Membership groups parameters
+   * Return list of all membership plans.
+   * @param params {Object} Membership group parameters
    * <pre>
    *   {
    *    group_id: Number
    *   }
    * </pre>
-   * @returns {Object} <pre>{
-   * "currentPageIndex":1,
-   * "totalCount":11,
-   * "lastPageIndex":6,
-   * "items": [
+   * @returns {Array} <pre>[
    *   {
    *    "id":"1",
    *    "title":"Premium",
@@ -67,12 +71,16 @@ export default class Memberships {
    *    "price": 199,
    *    "max_downloads":"10",
    *    "duration_days":"30",
-   *    }, ...]
-   *  }</pre>
+   *    }, ...]</pre>
    * @method Memberships#getMemberships
    */
-  getMemberships (params = {}) {
-    return false;
+  async getMemberships (params = {}) {
+    params = {...params, ...{locale : this.locale}};
+    const response = await fetch(`${this.url}/memberships?${serialize(params)}`);
+    if (response.status >= 400) {
+      throw new Error('Bad server response');
+    }
+    return await response.json();
   }
 
   /**
@@ -87,11 +95,7 @@ export default class Memberships {
    *    group_id : Number
    *   }
    * </pre>
-   * @returns {Object} <pre>{
-   * "currentPageIndex":1,
-   * "totalCount":11,
-   * "lastPageIndex":6,
-   * "items": [
+   * @returns {Array} <pre>[
    *   {
    *    "id":"1",
    *    "membership": {
@@ -108,18 +112,30 @@ export default class Memberships {
    *    "end_date":"1038444",
    *    "downloads":"0",
    *    "downloads_quota": 100,
-   *   }, ...]
-   *  }</pre>
+   *   }, ...]</pre>
    * @method Memberships#getListOfSubscriptions
    */
-  getListOfSubscriptions (token, params = {}) {
-    return false;
+  async getListOfSubscriptions (token, params = {}) {
+    if (!token.length) {
+      throw new Error('Token can`t defined');
+    }
+    params = {...params, ...{locale : this.locale}};
+    const response = await fetch(`${this.url}/membership-subscriptions/my?${serialize(params)}`, {
+      headers : new Headers({
+        'Authorization' : token
+      })
+    });
+    if (response.status >= 400) {
+      throw new Error('Bad server response');
+    }
+    return await response.json();
   }
 
   /**
    * Return subscription
    .
    * @param token {String} User token
+   * @param id {Number} User id
    * @returns {Object} <pre>{
    *  "id":"1",
    *  "membership": {
@@ -139,13 +155,29 @@ export default class Memberships {
    * }</pre>
    * @method Memberships#getSubscription
    */
-  getSubscription (token, params = {}) {
-    return false;
+  async getSubscription (token, id) {
+    if (!token.length) {
+      throw new Error('Token can`t defined');
+    }
+    if (!this._idExist(id)) {
+      throw new Error('User id isn`t defined.');
+    }
+
+    const response = await fetch(`${this.url}/membership-subscriptions/${id}?locale=${this.locale}`, {
+      headers : new Headers({
+        'Authorization' : token
+      })
+    });
+    if (response.status >= 400) {
+      throw new Error('Bad server response');
+    }
+    return await response.json();
   }
 
   /**
    * Return list of downloads.
    * @param token {String} User token
+   * @param id {Number} Product id
    * @returns {Object} <pre>{
    * "currentPageIndex":1,
    * "totalCount":11,
@@ -159,7 +191,26 @@ export default class Memberships {
    *  }</pre>
    * @method Memberships#getListOfDownloads
    */
-  getListOfDownloads(token, params = {}) {
-    return false;
+  async getListOfDownloads (token, id) {
+    if (!token.length) {
+      throw new Error('Token can`t defined');
+    }
+    if (!this._idExist(id)) {
+      throw new Error('Product id isn`t defined.');
+    }
+
+    const response = await fetch(`${this.url}/membership-subscriptions/my/downloads/${id}?locale=${this.locale}`, {
+      headers : new Headers({
+        'Authorization' : token
+      })
+    });
+    if (response.status >= 400) {
+      throw new Error('Bad server response');
+    }
+    return await response.json();
+  }
+
+  _idExist (id) {
+    return (!isNaN(id)) && (id !== null) && (id > 0)
   }
 }

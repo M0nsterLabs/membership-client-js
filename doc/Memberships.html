@@ -94,7 +94,7 @@ const products = new Memberships ('http://service-memberships.dev/api/v1', 'en')
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Memberships.js.html">Memberships.js</a>, <a href="Memberships.js.html#line21">line 21</a>
+        <a href="Memberships.js.html">Memberships.js</a>, <a href="Memberships.js.html#line25">line 25</a>
     </li></ul></dd>
     
 
@@ -143,7 +143,7 @@ const products = new Memberships ('http://service-memberships.dev/api/v1', 'en')
 
     
 
-    <h4 class="name" id="getListOfDownloads"><span class="type-signature"></span>getListOfDownloads<span class="signature">(token)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    <h4 class="name" id="getListOfDownloads"><span class="type-signature"></span>getListOfDownloads<span class="signature">(token, id)</span><span class="type-signature"> &rarr; {Object}</span></h4>
 
     
 
@@ -206,6 +206,29 @@ const products = new Memberships ('http://service-memberships.dev/api/v1', 'en')
         </tr>
 
     
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Product id</p></td>
+        </tr>
+
+    
     </tbody>
 </table>
 
@@ -243,7 +266,7 @@ const products = new Memberships ('http://service-memberships.dev/api/v1', 'en')
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Memberships.js.html">Memberships.js</a>, <a href="Memberships.js.html#line189">line 189</a>
+        <a href="Memberships.js.html">Memberships.js</a>, <a href="Memberships.js.html#line177">line 177</a>
     </li></ul></dd>
     
 
@@ -306,7 +329,7 @@ const products = new Memberships ('http://service-memberships.dev/api/v1', 'en')
 
     
 
-    <h4 class="name" id="getListOfSubscriptions"><span class="type-signature"></span>getListOfSubscriptions<span class="signature">(token, params)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    <h4 class="name" id="getListOfSubscriptions"><span class="type-signature"></span>getListOfSubscriptions<span class="signature">(token, params)</span><span class="type-signature"> &rarr; {Array}</span></h4>
 
     
 
@@ -437,7 +460,7 @@ const products = new Memberships ('http://service-memberships.dev/api/v1', 'en')
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Memberships.js.html">Memberships.js</a>, <a href="Memberships.js.html#line111">line 111</a>
+        <a href="Memberships.js.html">Memberships.js</a>, <a href="Memberships.js.html#line105">line 105</a>
     </li></ul></dd>
     
 
@@ -464,11 +487,7 @@ const products = new Memberships ('http://service-memberships.dev/api/v1', 'en')
 
         
 <div class="param-desc">
-    <pre>{
-"currentPageIndex":1,
-"totalCount":11,
-"lastPageIndex":6,
-"items": [
+    <pre>[
   {
    "id":"1",
    "membership": {
@@ -485,8 +504,7 @@ const products = new Memberships ('http://service-memberships.dev/api/v1', 'en')
    "end_date":"1038444",
    "downloads":"0",
    "downloads_quota": 100,
-  }, ...]
- }</pre>
+  }, ...]</pre>
 </div>
 
 
@@ -497,7 +515,7 @@ const products = new Memberships ('http://service-memberships.dev/api/v1', 'en')
     </dt>
     <dd>
         
-<span class="param-type">Object</span>
+<span class="param-type">Array</span>
 
 
     </dd>
@@ -512,7 +530,7 @@ const products = new Memberships ('http://service-memberships.dev/api/v1', 'en')
 
     
 
-    <h4 class="name" id="getMembershipGroups"><span class="type-signature"></span>getMembershipGroups<span class="signature">(params)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    <h4 class="name" id="getMembershipGroups"><span class="type-signature"></span>getMembershipGroups<span class="signature">(params)</span><span class="type-signature"> &rarr; {Array}</span></h4>
 
     
 
@@ -617,7 +635,7 @@ const products = new Memberships ('http://service-memberships.dev/api/v1', 'en')
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Memberships.js.html">Memberships.js</a>, <a href="Memberships.js.html#line44">line 44</a>
+        <a href="Memberships.js.html">Memberships.js</a>, <a href="Memberships.js.html#line48">line 48</a>
     </li></ul></dd>
     
 
@@ -644,19 +662,14 @@ const products = new Memberships ('http://service-memberships.dev/api/v1', 'en')
 
         
 <div class="param-desc">
-    <pre>{
-"currentPageIndex":1,
-"totalCount":11,
-"lastPageIndex":6,
-"items": [
+    <pre>[
   {
     "id":"1",
     "name":"Name",
     "active_icon":"http://s3.amazonaws.com/doc/2017-02-02/",
     "inactive_icon":"http://s3.amazonaws.com/doc/2017-02-02/",
     "type_id":"17763",
-  }, ...]
- }</pre>
+  }, ...]</pre>
 </div>
 
 
@@ -667,7 +680,7 @@ const products = new Memberships ('http://service-memberships.dev/api/v1', 'en')
     </dt>
     <dd>
         
-<span class="param-type">Object</span>
+<span class="param-type">Array</span>
 
 
     </dd>
@@ -682,14 +695,14 @@ const products = new Memberships ('http://service-memberships.dev/api/v1', 'en')
 
     
 
-    <h4 class="name" id="getMemberships"><span class="type-signature"></span>getMemberships<span class="signature">(params)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    <h4 class="name" id="getMemberships"><span class="type-signature"></span>getMemberships<span class="signature">(params)</span><span class="type-signature"> &rarr; {Array}</span></h4>
 
     
 
 
 
 <div class="description">
-    <p>Return list of membership groups.</p>
+    <p>Return list of all membership plans.</p>
 </div>
 
 
@@ -741,7 +754,7 @@ const products = new Memberships ('http://service-memberships.dev/api/v1', 'en')
 
             
 
-            <td class="description last"><p>Membership groups parameters</p>
+            <td class="description last"><p>Membership group parameters</p>
 <pre>
   {
    group_id: Number
@@ -787,7 +800,7 @@ const products = new Memberships ('http://service-memberships.dev/api/v1', 'en')
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Memberships.js.html">Memberships.js</a>, <a href="Memberships.js.html#line77">line 77</a>
+        <a href="Memberships.js.html">Memberships.js</a>, <a href="Memberships.js.html#line76">line 76</a>
     </li></ul></dd>
     
 
@@ -814,11 +827,7 @@ const products = new Memberships ('http://service-memberships.dev/api/v1', 'en')
 
         
 <div class="param-desc">
-    <pre>{
-"currentPageIndex":1,
-"totalCount":11,
-"lastPageIndex":6,
-"items": [
+    <pre>[
   {
    "id":"1",
    "title":"Premium",
@@ -827,8 +836,7 @@ const products = new Memberships ('http://service-memberships.dev/api/v1', 'en')
    "price": 199,
    "max_downloads":"10",
    "duration_days":"30",
-   }, ...]
- }</pre>
+   }, ...]</pre>
 </div>
 
 
@@ -839,7 +847,7 @@ const products = new Memberships ('http://service-memberships.dev/api/v1', 'en')
     </dt>
     <dd>
         
-<span class="param-type">Object</span>
+<span class="param-type">Array</span>
 
 
     </dd>
@@ -854,7 +862,7 @@ const products = new Memberships ('http://service-memberships.dev/api/v1', 'en')
 
     
 
-    <h4 class="name" id="getSubscription"><span class="type-signature"></span>getSubscription<span class="signature">(token)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    <h4 class="name" id="getSubscription"><span class="type-signature"></span>getSubscription<span class="signature">(token, id)</span><span class="type-signature"> &rarr; {Object}</span></h4>
 
     
 
@@ -918,6 +926,29 @@ const products = new Memberships ('http://service-memberships.dev/api/v1', 'en')
         </tr>
 
     
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>User id</p></td>
+        </tr>
+
+    
     </tbody>
 </table>
 
@@ -955,7 +986,7 @@ const products = new Memberships ('http://service-memberships.dev/api/v1', 'en')
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Memberships.js.html">Memberships.js</a>, <a href="Memberships.js.html#line157">line 157</a>
+        <a href="Memberships.js.html">Memberships.js</a>, <a href="Memberships.js.html#line146">line 146</a>
     </li></ul></dd>
     
 
@@ -1041,7 +1072,7 @@ const products = new Memberships ('http://service-memberships.dev/api/v1', 'en')
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Wed Feb 22 2017 17:59:03 GMT+0200 (EET)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Thu Feb 23 2017 16:49:32 GMT+0200 (EET)
 </footer>
 
 <script> prettyPrint(); </script>
