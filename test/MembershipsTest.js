@@ -7,6 +7,13 @@ describe('Memberships API', function () {
     this.serviceURL = 'http://service-memberships.dev/api/v1';
     this.api = new Memberships(this.serviceURL, 'en');
     this.token = 'tokentokentokentokentokentoken';
+    this.items = [{
+      id   : 0,
+      name : 'name-0'
+    }, {
+      id   : 1,
+      name : 'name-1'
+    }];
     this.nock = function (req, data) {
       nock(this.serviceURL).
         get(req).
@@ -20,91 +27,52 @@ describe('Memberships API', function () {
   });
 
   it('getMembershipGroups', function (done) {
-    const items = [{
-      id   : 0,
-      name : 'name-0'
-    }, {
-      id   : 1,
-      name : 'name-1'
-    }];
-    this.nock('/memberships-groups?locale=en', items);
+    this.nock('/memberships-groups?locale=en', this.items);
     this.api.getMembershipGroups(this.token).then(response => {
-      assert.deepEqual(response, items);
+      assert.deepEqual(response, this.items);
       done();
     }).catch(done);
   });
 
   it('getMemberships', function (done) {
-    const items = [{
-      id    : 0,
-      title : 'name-0'
-    }, {
-      id    : 1,
-      title : 'name-1'
-    }];
-    this.nock('/memberships?locale=en', items);
+    this.nock('/memberships?locale=en', this.items);
     this.api.getMemberships().then(response => {
-      assert.deepEqual(response, items);
+      assert.deepEqual(response, this.items);
       done();
     }).catch(done);
   });
 
   it('getListOfSubscriptions', function (done) {
-    const items = [{
-      id         : 0,
-      membership : {}
-    }, {
-      id         : 1,
-      membership : {}
-    }];
-    this.nock('/membership-subscriptions/my?locale=en', items);
+    this.nock('/membership-subscriptions/my?locale=en', this.items);
     this.api.getListOfSubscriptions(this.token).then(response => {
-      assert.deepEqual(response, items);
+      assert.deepEqual(response, this.items);
       done();
     }).catch(done);
   });
 
   it('getSubscription', function (done) {
-    const item = {
-      id         : 0,
-      membership : {}
-    };
     nock(this.serviceURL).
       get('/membership-subscriptions/1?locale=en').
-      reply(200, item);
+      reply(200, this.items[0]);
 
     this.api.getSubscription(this.token, 1).then(response => {
-      assert.deepEqual(response, item);
+      assert.deepEqual(response, this.items[0]);
       done();
     }).catch(done);
   });
 
   it('getListOfDownloads', function (done) {
-    const items = [{
-      id         : 0,
-      product_id : 0
-    }, {
-      id         : 1,
-      product_id : 1
-    }];
-    this.nock('/membership-subscriptions/my/downloads/55555?locale=en', items);
+    this.nock('/membership-subscriptions/my/downloads/55555?locale=en', this.items);
     this.api.getListOfDownloads(this.token, 55555).then(response => {
-      assert.deepEqual(response, items);
+      assert.deepEqual(response, this.items);
       done();
     }).catch(done);
   });
 
   it('getListOfDownloads', function (done) {
-    const items = [{
-      id         : 0,
-      product_id : 0
-    }, {
-      id         : 1,
-      product_id : 1
-    }];
-    this.nock('/membership-subscriptions/my/downloads/55555?locale=en', items);
+    this.nock('/membership-subscriptions/my/downloads/55555?locale=en', this.items);
     this.api.getListOfDownloads(this.token, 55555).then(response => {
-      assert.deepEqual(response, items);
+      assert.deepEqual(response, this.items);
       done();
     }).catch(done);
   });
