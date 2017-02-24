@@ -9,6 +9,11 @@ describe('Memberships API', function () {
     this.token = 'tokentokentokentokentokentoken';
   });
 
+  it('Create SDK Object without locale', function() {
+    const testApi = new Memberships(this.serviceURL);
+    assert.deepEqual(testApi.locale, 'en');
+  });
+
   it('getMembershipGroups', function (done) {
     const items = [{
       id   : 0,
