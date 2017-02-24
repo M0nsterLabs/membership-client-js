@@ -16,12 +16,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git@github.com:stevenReed/memberships-client-js.git"
+    "url": "git@github.com:M0nsterLabs/memberships-client-js.git"
   },
   "bugs": {
-    "url": "https://github.com/stevenReed/memberships-client-js/issues"
+    "url": "https://github.com/M0nsterLabs/memberships-client-js/issues"
   },
-  "homepage": "https://github.com/stevenReed/memberships-client-js",
+  "homepage": "https://github.com/M0nsterLabs/memberships-client-js",
   "description": "Memberships API JS client",
   "babel": {
     "presets": [
