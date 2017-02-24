@@ -159,7 +159,7 @@ export default class Memberships {
     if (!token.length) {
       throw new Error('Token can`t defined');
     }
-    if (!this._idExist(id)) {
+    if (!this._isValidId(id)) {
       throw new Error('User id isn`t defined.');
     }
 
@@ -195,7 +195,7 @@ export default class Memberships {
     if (!token.length) {
       throw new Error('Token can`t defined');
     }
-    if (!this._idExist(id)) {
+    if (!this._isValidId(id)) {
       throw new Error('Product id isn`t defined.');
     }
 
@@ -210,7 +210,7 @@ export default class Memberships {
     return await response.json();
   }
 
-  _idExist (id) {
-    return (!isNaN(id)) && (id !== null) && (id > 0)
+  _isValidId (val) {
+    return typeof val == 'number' && val>0;
   }
 }
