@@ -7,6 +7,11 @@ describe('Memberships API', function () {
     this.serviceURL = 'http://service-memberships.dev/api/v1';
     this.api = new Memberships(this.serviceURL, 'en');
     this.token = 'tokentokentokentokentokentoken';
+    this.nock = function (req, data) {
+      nock(this.serviceURL).
+        get(req).
+        reply(200, data);
+    }
   });
 
   it('Create SDK Object without locale', function() {
@@ -22,9 +27,7 @@ describe('Memberships API', function () {
       id   : 1,
       name : 'name-1'
     }];
-    nock(this.serviceURL).
-      get('/memberships-groups?locale=en').
-      reply(200, items);
+    this.nock('/memberships-groups?locale=en', items);
     this.api.getMembershipGroups(this.token).then(response => {
       assert.deepEqual(response, items);
       done();
@@ -39,10 +42,7 @@ describe('Memberships API', function () {
       id    : 1,
       title : 'name-1'
     }];
-    nock(this.serviceURL).
-      get('/memberships?locale=en').
-      reply(200, items);
-
+    this.nock('/memberships?locale=en', items);
     this.api.getMemberships().then(response => {
       assert.deepEqual(response, items);
       done();
@@ -57,10 +57,7 @@ describe('Memberships API', function () {
       id         : 1,
       membership : {}
     }];
-    nock(this.serviceURL).
-      get('/membership-subscriptions/my?locale=en').
-      reply(200, items);
-
+    this.nock('/membership-subscriptions/my?locale=en', items);
     this.api.getListOfSubscriptions(this.token).then(response => {
       assert.deepEqual(response, items);
       done();
@@ -90,10 +87,7 @@ describe('Memberships API', function () {
       id         : 1,
       product_id : 1
     }];
-    nock(this.serviceURL).
-      get('/membership-subscriptions/my/downloads/55555?locale=en').
-      reply(200, items);
-
+    this.nock('/membership-subscriptions/my/downloads/55555?locale=en', items);
     this.api.getListOfDownloads(this.token, 55555).then(response => {
       assert.deepEqual(response, items);
       done();
@@ -108,10 +102,7 @@ describe('Memberships API', function () {
       id         : 1,
       product_id : 1
     }];
-    nock(this.serviceURL).
-      get('/membership-subscriptions/my/downloads/55555?locale=en').
-      reply(200, items);
-
+    this.nock('/membership-subscriptions/my/downloads/55555?locale=en', items);
     this.api.getListOfDownloads(this.token, 55555).then(response => {
       assert.deepEqual(response, items);
       done();
