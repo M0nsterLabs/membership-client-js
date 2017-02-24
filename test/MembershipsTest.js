@@ -6,7 +6,6 @@ describe('Memberships API', function () {
   before(function () {
     this.serviceURL = 'http://service-memberships.dev/api/v1';
     this.api = new Memberships(this.serviceURL, 'en');
-    const rrr = new Memberships(this.serviceURL, 'en');
     this.token = 'tokentokentokentokentokentoken';
   });
 
