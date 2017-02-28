@@ -61,14 +61,6 @@ describe('Memberships API', function () {
     }).catch(done);
   });
 
-  it('getListOfDownloads', function (done) {
-    this.nock('/membership-subscriptions/my/downloads/55555?locale=en', this.items);
-    this.api.getListOfDownloads(this.token, 55555).then(response => {
-      assert.deepEqual(response, this.items);
-      done();
-    }).catch(done);
-  });
-
   it('_isValidId', function () {
     assert.isTrue(this.api._isValidId(1));
     assert.isFalse(this.api._isValidId(0));
