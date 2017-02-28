@@ -43,7 +43,7 @@ export default class Membership {
       throw new Error('Token can`t defined');
     }
     params = {...params, ...{locale : this.locale}};
-    const response = await this._authRequest(`${this.url}/memberships-groups?${serialize(params)}`, token);
+    const response = await this._fetchRequest(`${this.url}/memberships-groups?${serialize(params)}`, token);
     return response.json();
   }
 
@@ -69,10 +69,7 @@ export default class Membership {
    */
   async getMemberships (params = {}) {
     params = {...params, ...{locale : this.locale}};
-    const response = await fetch(`${this.url}/memberships?${serialize(params)}`);
-    if (response.status >= 400) {
-      throw new Error('Bad server response');
-    }
+    const response = await this._fetchRequest(`${this.url}/memberships?${serialize(params)}`);
     return response.json();
   }
 
@@ -113,7 +110,7 @@ export default class Membership {
       throw new Error('Token can`t defined');
     }
     params = {...params, ...{locale : this.locale}};
-    const response = await this._authRequest(`${this.url}/membership-subscriptions/my?${serialize(params)}`, token);
+    const response = await this._fetchRequest(`${this.url}/membership-subscriptions/my?${serialize(params)}`, token);
     return response.json();
   }
 
@@ -148,7 +145,7 @@ export default class Membership {
     if (!this._isValidId(id)) {
       throw new Error('User id isn`t defined.');
     }
-    const response = await this._authRequest(`${this.url}/membership-subscriptions/${id}?locale=${this.locale}`, token);
+    const response = await this._fetchRequest(`${this.url}/membership-subscriptions/${id}?locale=${this.locale}`, token);
     return response.json();
   }
 
@@ -176,7 +173,7 @@ export default class Membership {
     if (!this._isValidId(id)) {
       throw new Error('Product id isn`t defined.');
     }
-    const response = await this._authRequest(`${this.url}/membership-subscriptions/my/downloads/${id}?locale=${this.locale}`, token);
+    const response = await this._fetchRequest(`${this.url}/membership-subscriptions/my/downloads/${id}?locale=${this.locale}`, token);
     return response.json();
   }
 
@@ -184,7 +181,7 @@ export default class Membership {
     return typeof val == 'number' && val > 0;
   }
 
-  async _authRequest (url, token = false) {
+  async _fetchRequest (url, token = false) {
     const headers = token ? new Headers({'Authorization' : token}) : {};
     const response = await fetch(url, {headers: headers});
     if (response.status >= 400) {
