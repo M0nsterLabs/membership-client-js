@@ -177,10 +177,23 @@ export default class Membership {
     return response.json();
   }
 
+  /**
+   * Return Correct id or not
+   * @param id {Number} Product id
+   * @returns {Bool}
+   * @method Memberships#_isValidId
+   */
   _isValidId (val) {
     return typeof val == 'number' && val > 0;
   }
 
+  /**
+   * Return Fetch Promise
+   * @param url {String} Where request go
+   * @param token {String} auth user token
+   * @returns {Promise}
+   * @method Memberships#_fetchRequest
+   */
   async _fetchRequest (url, token = false) {
     const headers = token ? new Headers({'Authorization' : token}) : {};
     const response = await fetch(url, {headers: headers});
