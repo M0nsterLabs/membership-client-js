@@ -2,7 +2,7 @@ import Membership from '../src/Membership';
 import {assert} from 'chai';
 import nock from 'nock';
 
-describe('Memberships API', function () {
+describe('Memberships API Unit tests', function () {
   before(function () {
     this.serviceURL = 'http://service-memberships.dev/api/v1';
     this.api = new Membership(this.serviceURL, 'en');
@@ -11,11 +11,6 @@ describe('Memberships API', function () {
     this.nock = function (req, data) {
       nock(this.serviceURL).get(req).reply(200, data);
     }
-  });
-
-  it('Create SDK Object without locale', function() {
-    const testApi = new Membership(this.serviceURL);
-    assert.deepEqual(testApi.locale, 'en');
   });
 
   it('getMembershipGroups', function (done) {
@@ -59,12 +54,5 @@ describe('Memberships API', function () {
       assert.deepEqual(response, this.items);
       done();
     }).catch(done);
-  });
-
-  it('_isValidId', function () {
-    assert.isTrue(this.api._isValidId(1));
-    assert.isFalse(this.api._isValidId(0));
-    assert.isFalse(this.api._isValidId(null));
-    assert.isFalse(this.api._isValidId());
   });
 });
