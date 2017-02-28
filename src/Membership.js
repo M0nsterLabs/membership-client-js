@@ -11,7 +11,7 @@ import _ from 'lodash';
  * ~~~~
  * @constructor Memberships
  */
-export default class Memberships {
+export default class Membership {
   locale = null;
   url = null;
 
@@ -43,15 +43,8 @@ export default class Memberships {
       throw new Error('Token can`t defined');
     }
     params = {...params, ...{locale : this.locale}};
-    const response = await fetch(`${this.url}/memberships-groups?${serialize(params)}`, {
-      headers : new Headers({
-        'Authorization' : token
-      })
-    });
-    if (response.status >= 400) {
-      throw new Error('Bad server response');
-    }
-    return await response.json();
+    const response = await this._authRequest(token, `${this.url}/memberships-groups?${serialize(params)}`);
+    return response.json();
   }
 
   /**
@@ -80,7 +73,7 @@ export default class Memberships {
     if (response.status >= 400) {
       throw new Error('Bad server response');
     }
-    return await response.json();
+    return response.json();
   }
 
   /**
@@ -120,15 +113,8 @@ export default class Memberships {
       throw new Error('Token can`t defined');
     }
     params = {...params, ...{locale : this.locale}};
-    const response = await fetch(`${this.url}/membership-subscriptions/my?${serialize(params)}`, {
-      headers : new Headers({
-        'Authorization' : token
-      })
-    });
-    if (response.status >= 400) {
-      throw new Error('Bad server response');
-    }
-    return await response.json();
+    const response = await this._authRequest(token, `${this.url}/membership-subscriptions/my?${serialize(params)}`);
+    return response.json();
   }
 
   /**
@@ -162,16 +148,8 @@ export default class Memberships {
     if (!this._isValidId(id)) {
       throw new Error('User id isn`t defined.');
     }
-
-    const response = await fetch(`${this.url}/membership-subscriptions/${id}?locale=${this.locale}`, {
-      headers : new Headers({
-        'Authorization' : token
-      })
-    });
-    if (response.status >= 400) {
-      throw new Error('Bad server response');
-    }
-    return await response.json();
+    const response = await this._authRequest(token, `${this.url}/membership-subscriptions/${id}?locale=${this.locale}`);
+    return response.json();
   }
 
   /**
@@ -198,8 +176,16 @@ export default class Memberships {
     if (!this._isValidId(id)) {
       throw new Error('Product id isn`t defined.');
     }
+    const response = await this._authRequest(token, `${this.url}/membership-subscriptions/my/downloads/${id}?locale=${this.locale}`);
+    return response.json();
+  }
 
-    const response = await fetch(`${this.url}/membership-subscriptions/my/downloads/${id}?locale=${this.locale}`, {
+  _isValidId (val) {
+    return typeof val == 'number' && val>0;
+  }
+
+  async _authRequest (token, url) {
+    const response = await fetch(url, {
       headers : new Headers({
         'Authorization' : token
       })
@@ -207,10 +193,6 @@ export default class Memberships {
     if (response.status >= 400) {
       throw new Error('Bad server response');
     }
-    return await response.json();
-  }
-
-  _isValidId (val) {
-    return typeof val == 'number' && val>0;
+    return response;
   }
 }

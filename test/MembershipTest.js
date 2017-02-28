@@ -1,11 +1,11 @@
-import Memberships from '../src/Memberships';
+import Membership from '../src/Membership';
 import {assert} from 'chai';
 import nock from 'nock';
 
 describe('Memberships API', function () {
   before(function () {
     this.serviceURL = 'http://service-memberships.dev/api/v1';
-    this.api = new Memberships(this.serviceURL, 'en');
+    this.api = new Membership(this.serviceURL, 'en');
     this.token = 'tokentokentokentokentokentoken';
     this.items = [{id: 0, name: 'name-0'}, {id: 1, name: 'name-1'}];
     this.nock = function (req, data) {
@@ -14,7 +14,7 @@ describe('Memberships API', function () {
   });
 
   it('Create SDK Object without locale', function() {
-    const testApi = new Memberships(this.serviceURL);
+    const testApi = new Membership(this.serviceURL);
     assert.deepEqual(testApi.locale, 'en');
   });
 
