@@ -1,4 +1,4 @@
-import Membership from '../src/Membership';
+import Membership from '../../src/Membership';
 import {assert} from 'chai';
 
 describe('Memberships API Functional tests', function () {
