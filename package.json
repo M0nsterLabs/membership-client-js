@@ -13,7 +13,7 @@
     "prepublish": "npm run build && npm run doc",
     "clean": "rimraf doc dist"
   },
-  "author": "Plasma",
+  "author": "Plasma platform",
   "license": "MIT",
   "repository": {
     "type": "git",
