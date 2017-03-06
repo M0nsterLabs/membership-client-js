@@ -1,5 +1,5 @@
 {
-  "name": "tm-membership-api-client-js",
+  "name": "plasma-membership-api-client-js",
   "version": "1.0.5",
   "main": "dist/index.js",
   "scripts": {
@@ -13,16 +13,16 @@
     "prepublish": "npm run build && npm run doc",
     "clean": "rimraf doc dist"
   },
-  "author": "TemplateMonster.com",
+  "author": "Plasma",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Plasma-Platform/membership-client-js.git"
+    "url": "git+https://github.com/Plasma-Platform/Plasma-Membership-JS-Client.git"
   },
   "bugs": {
-    "url": "https://github.com/Plasma-Platform/membership-client-js/issues"
+    "url": "https://github.com/Plasma-Platform/Plasma-Membership-JS-Client/issues"
   },
-  "homepage": "https://github.com/Plasma-Platform/membership-client-js",
+  "homepage": "https://github.com/Plasma-Platform/Plasma-Membership-JS-Client",
   "description": "Memberships API JS client",
   "babel": {
     "presets": [
