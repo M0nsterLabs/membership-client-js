@@ -1,6 +1,7 @@
 import fetch from 'isomorphic-fetch';
 import serialize from 'tm-serialize';
 import _ from 'lodash';
+import Promise from 'bluebird';
 /**
  * Memberships API JS client.
  *
