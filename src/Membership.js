@@ -39,12 +39,9 @@ export default class Membership {
    *   }, ...]</pre>
    * @method Memberships#getMembershipGroups
    */
-  async getMembershipGroups (token, params = {}) {
-    if (!token.length) {
-      throw new Error('Token can`t defined');
-    }
+  async getMembershipGroups (params = {}) {
     params = {...params, ...{locale : this.locale}};
-    const response = await this._fetchRequest(`${this.url}/memberships-groups?${serialize(params)}`, token);
+    const response = await this._fetchRequest(`${this.url}/memberships-groups?${serialize(params)}`);
     return response.json();
   }
 
