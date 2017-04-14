@@ -41,7 +41,7 @@ export default class Membership {
    */
   async getMembershipGroups (params = {}) {
     params = {...params, ...{locale : this.locale}};
-    const response = await this._fetchRequest(`${this.url}/memberships-groups?${serialize(params)}`);
+    const response = await this._fetchRequest(`${this.url}/membership-groups?${serialize(params)}`);
     return response.json();
   }
 

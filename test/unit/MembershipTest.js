@@ -14,7 +14,7 @@ describe('Memberships API Unit tests', function () {
   });
 
   it('getMembershipGroups', function (done) {
-    this.nock('/memberships-groups?locale=en', this.items);
+    this.nock('/membership-groups?locale=en', this.items);
     this.api.getMembershipGroups().then(response => {
       assert.deepEqual(response, this.items);
       done();
