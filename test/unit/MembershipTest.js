@@ -30,8 +30,8 @@ describe('Memberships API Unit tests', function () {
   });
 
   it('getListOfSubscriptions', function (done) {
-    this.nock('/membership-subscriptions/my?locale=en', this.items);
-    this.api.getListOfSubscriptions(this.token).then(response => {
+    this.nock('/membership-subscriptions/my/downloads/123?locale=en', this.items);
+    this.api.getListOfSubscriptions(this.token, 123).then(response => {
       assert.deepEqual(response, this.items);
       done();
     }).catch(done);

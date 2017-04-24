@@ -103,12 +103,14 @@ export default class Membership {
    *   }, ...]</pre>
    * @method Memberships#getListOfSubscriptions
    */
-  async getListOfSubscriptions (token, params = {}) {
+  async getListOfSubscriptions (token, id = false) {
     if (!token.length) {
       throw new Error('Token can`t defined');
     }
-    params = {...params, ...{locale : this.locale}};
-    const response = await this._fetchRequest(`${this.url}/membership-subscriptions/my?${serialize(params)}`, token);
+    if (!id) {
+      throw new Error('id can`t defined');
+    }
+    const response = await this._fetchRequest(`${this.url}/membership-subscriptions/my/downloads/${id}?locale=${this.locale}`, token);
     return response.json();
   }
 
