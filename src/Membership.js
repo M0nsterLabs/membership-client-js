@@ -103,14 +103,13 @@ export default class Membership {
    *   }, ...]</pre>
    * @method Memberships#getListOfSubscriptions
    */
-  async getListOfSubscriptions (token, id = false) {
+  async getListOfSubscriptions (token, params = {}) {
     if (!token.length) {
       throw new Error('Token can`t defined');
     }
-    if (!id) {
-      throw new Error('id can`t defined');
-    }
-    const response = await this._fetchRequest(`${this.url}/membership-subscriptions/my/downloads/${id}?locale=${this.locale}`, token);
+    params.locale = this.locale;
+    console.log('hekloo', `${this.url}/membership-subscriptions/my?${serialize(params)}`);
+    const response = await this._fetchRequest(`${this.url}/membership-subscriptions/my?${serialize(params)}`, token);
     return response.json();
   }
 
