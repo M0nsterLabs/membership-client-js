@@ -108,7 +108,6 @@ export default class Membership {
       throw new Error('Token can`t defined');
     }
     params.locale = this.locale;
-    console.log('hekloo', `${this.url}/membership-subscriptions/my?${serialize(params)}`);
     const response = await this._fetchRequest(`${this.url}/membership-subscriptions/my?${serialize(params)}`, token);
     return response.json();
   }
