@@ -194,7 +194,7 @@ export default class Membership {
    */
   async _fetchRequest (url, token = false) {
     const headers = token ? new Headers({'Authorization' : token}) : {};
-    const response = await fetch(url, {headers: headers});
+    const response = await fetch(url, {headers: headers, method: 'GET'});
     if (response.status >= 400) {
       throw new Error('Bad server response');
     }
