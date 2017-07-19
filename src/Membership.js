@@ -293,3 +293,5 @@ export default class Membership {
     return response;
   }
 }
+
+export var __useDefault = true;
