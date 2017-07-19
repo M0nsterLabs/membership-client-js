@@ -11,10 +11,6 @@ module.exports = {
   },
   resolve: {},
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin({
-      children: true,
-      async: true,
-    }),
     new webpack.DefinePlugin({
       "process.env" : {
         NODE_ENV : JSON.stringify("production")
