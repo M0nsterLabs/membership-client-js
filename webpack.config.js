@@ -4,7 +4,7 @@ const baseDir = process.cwd();
 const buildPath = path.resolve(baseDir, 'dist');
 
 module.exports = {
-  entry: ['babel-polyfill', './src/index.js'],
+  entry: ['./src/index.js'],
   output: {
     path: buildPath,
     filename: 'index.js',
