@@ -9,9 +9,11 @@
     * [.getMemberships(params)](#Memberships+getMemberships) ⇒ <code>Array</code>
     * [.getListOfSubscriptions(token, params)](#Memberships+getListOfSubscriptions) ⇒ <code>Array</code>
     * [.getSubscription(token, id)](#Memberships+getSubscription) ⇒ <code>Object</code>
+    * [.reactivatePayments(token, id)](#Memberships+reactivatePayments) ⇒ <code>Object</code>
+    * [.suspendPayments(token, id)](#Memberships+suspendPayments) ⇒ <code>Object</code>
     * [.getListOfDownloads(token, id)](#Memberships+getListOfDownloads) ⇒ <code>Object</code>
     * [._isValidId(id)](#Memberships+_isValidId) ⇒ <code>Bool</code>
-    * [._fetchRequest(url, token)](#Memberships+_fetchRequest) ⇒ <code>Promise</code>
+    * [._fetchRequest(url, token, method, params)](#Memberships+_fetchRequest) ⇒ <code>Promise</code>
 
 <a name="new_Memberships_new"></a>
 
@@ -125,6 +127,66 @@ Return subscription
 | token | <code>String</code> | User token |
 | id | <code>Number</code> | User id |
 
+<a name="Memberships+reactivatePayments"></a>
+
+### memberships.reactivatePayments(token, id) ⇒ <code>Object</code>
+Reactivate payments
+
+**Kind**: instance method of <code>[Memberships](#Memberships)</code>  
+**Returns**: <code>Object</code> - <pre>{
+ "id":"1",
+ "membership": {
+    "id":"1",
+    "title":"Premium",
+    "descriptions":"Example description",
+    "group_id":"1",
+    "price": 199,
+    "max_downloads":"10",
+    "duration_days":"30",
+ },
+ "user_id":"12345",
+ "status":"active"
+ "end_date":"1038444",
+ "downloads":"0",
+ "downloads_quota": 100,
+ "payment_status": active,
+}</pre>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| token | <code>String</code> | User token |
+| id | <code>Number</code> | Membership subscription id |
+
+<a name="Memberships+suspendPayments"></a>
+
+### memberships.suspendPayments(token, id) ⇒ <code>Object</code>
+Suspend payments
+
+**Kind**: instance method of <code>[Memberships](#Memberships)</code>  
+**Returns**: <code>Object</code> - <pre>{
+ "id":"1",
+ "membership": {
+    "id":"1",
+    "title":"Premium",
+    "descriptions":"Example description",
+    "group_id":"1",
+    "price": 199,
+    "max_downloads":"10",
+    "duration_days":"30",
+ },
+ "user_id":"12345",
+ "status":"active"
+ "end_date":"1038444",
+ "downloads":"0",
+ "downloads_quota": 100,
+ "payment_status": active,
+}</pre>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| token | <code>String</code> | User token |
+| id | <code>Number</code> | Membership subscription id |
+
 <a name="Memberships+getListOfDownloads"></a>
 
 ### memberships.getListOfDownloads(token, id) ⇒ <code>Object</code>
@@ -161,7 +223,7 @@ Return Correct id or not
 
 <a name="Memberships+_fetchRequest"></a>
 
-### memberships._fetchRequest(url, token) ⇒ <code>Promise</code>
+### memberships._fetchRequest(url, token, method, params) ⇒ <code>Promise</code>
 Return Fetch Promise
 
 **Kind**: instance method of <code>[Memberships](#Memberships)</code>  
@@ -170,4 +232,6 @@ Return Fetch Promise
 | --- | --- | --- |
 | url | <code>String</code> | Where request go |
 | token | <code>String</code> | auth user token |
+| method | <code>String</code> | request method must be uppercase, default 'GET' |
+| params | <code>Object</code> | request params object |
 
