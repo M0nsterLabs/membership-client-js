@@ -1,1 +1,1 @@
-import 'bluebird';import 'isomorphic-fetch';import Membership from './Membership';export Membership;
+import 'bluebird';import 'isomorphic-fetch';import Membership from './Membership';module.exports = Membership;
