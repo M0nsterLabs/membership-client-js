@@ -5,7 +5,7 @@
   "scripts": {
     "predoc": "npm run build",
     "doc": "rimraf doc && jsdoc --configure etc/jsdoc.json dist && jsdoc2md --configure etc/jsdoc2md.json src/Membership.js > ./README.md",
-    "build": "./node_modules/.bin/rimraf dist && babel -d dist src",
+    "build": "webpack",
     "release": "npm version patch && git push && git push --tags && npm publish",
     "test:unit": "./node_modules/.bin/mocha test/unit/* --compilers js:babel-register --require babel-polyfill --require bluebird --require isomorphic-fetch",
     "test:functional": "./node_modules/.bin/mocha test/functional/* --compilers js:babel-register --require babel-polyfill --require bluebird --require isomorphic-fetch",
@@ -33,7 +33,9 @@
   "devDependencies": {
     "assert": "^1.4.1",
     "babel-cli": "^6.18.0",
+    "babel-loader": "^7.1.1",
     "babel-plugin-transform-async-to-generator": "^6.22.0",
+    "babel-polyfill": "^6.23.0",
     "babel-preset-latest": "^6.16.0",
     "babel-preset-stage-0": "^6.22.0",
     "chai": "^3.5.0",
@@ -45,10 +47,10 @@
     "mocha": "^3.2.0",
     "nock": "^9.0.2",
     "rimraf": "^2.5.4",
-    "sinon": "^1.17.7"
+    "sinon": "^1.17.7",
+    "webpack": "^3.3.0"
   },
   "dependencies": {
-    "babel-polyfill": "^6.22.0",
     "bluebird": "^3.4.7",
     "form-data": "^2.1.2",
     "isomorphic-fetch": "^2.2.1",

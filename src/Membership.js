@@ -1,6 +1,5 @@
 import fetch from 'isomorphic-fetch';
 import serialize from 'plasma-serialize';
-import _ from 'lodash';
 import Promise from 'bluebird';
 /**
  * Memberships API JS client.
