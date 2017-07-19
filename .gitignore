@@ -3,4 +3,3 @@ node_modules
 dist
 coverage
 doc
-package-lock.json
