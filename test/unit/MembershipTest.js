@@ -10,7 +10,10 @@ describe('Memberships API Unit tests', function () {
     this.items = [{id: 0, name: 'name-0'}, {id: 1, name: 'name-1'}];
     this.nock = function (req, data) {
       nock(this.serviceURL).get(req).reply(200, data);
-    }
+    };
+    this.nockPut = function (req, data) {
+      nock(this.serviceURL).put(req).reply(200, data);
+    };
   });
 
   it('getMembershipGroups', function (done) {
@@ -40,6 +43,22 @@ describe('Memberships API Unit tests', function () {
   it('getSubscription', function (done) {
     this.nock('/membership-subscriptions/1?locale=en', this.items[0]);
     this.api.getSubscription(this.token, 1).then(response => {
+      assert.deepEqual(response, this.items[0]);
+      done();
+    }).catch(done);
+  });
+
+  it('reactivatePayments', function (done) {
+    this.nockPut('/membership-subscriptions/1/reactivate-payment?locale=en', this.items[0]);
+    this.api.reactivatePayments(this.token, 1).then(response => {
+      assert.deepEqual(response, this.items[0]);
+      done();
+    }).catch(done);
+  });
+
+  it('suspendPayments', function (done) {
+    this.nockPut('/membership-subscriptions/1/suspend-payment?locale=en', this.items[0]);
+    this.api.suspendPayments(this.token, 1).then(response => {
       assert.deepEqual(response, this.items[0]);
       done();
     }).catch(done);

@@ -147,6 +147,84 @@ export default class Membership {
   }
 
   /**
+   * Reactivate payments
+   * @param token {String} User token
+   * @param id {Number} Membership subscription id
+   * @returns {Object} <pre>{
+   *  "id":"1",
+   *  "membership": {
+   *     "id":"1",
+   *     "title":"Premium",
+   *     "descriptions":"Example description",
+   *     "group_id":"1",
+   *     "price": 199,
+   *     "max_downloads":"10",
+   *     "duration_days":"30",
+   *  },
+   *  "user_id":"12345",
+   *  "status":"active"
+   *  "end_date":"1038444",
+   *  "downloads":"0",
+   *  "downloads_quota": 100,
+   *  "payment_status": active,
+   *}</pre>
+   * @method Memberships#reactivatePayments
+   */
+  async reactivatePayments (token, id) {
+    if (!token.length) {
+      throw new Error('Token can`t defined');
+    }
+    if (!this._isValidId(id)) {
+      throw new Error('Membership subscription id isn`t defined.');
+    }
+    const response = await this._fetchRequest(
+      `${this.url}/membership-subscriptions/${id}/reactivate-payment?locale=${this.locale}`,
+      token,
+      'PUT'
+    );
+    return response.json();
+  }
+
+  /**
+   * Suspend payments
+   * @param token {String} User token
+   * @param id {Number} Membership subscription id
+   * @returns {Object} <pre>{
+   *  "id":"1",
+   *  "membership": {
+   *     "id":"1",
+   *     "title":"Premium",
+   *     "descriptions":"Example description",
+   *     "group_id":"1",
+   *     "price": 199,
+   *     "max_downloads":"10",
+   *     "duration_days":"30",
+   *  },
+   *  "user_id":"12345",
+   *  "status":"active"
+   *  "end_date":"1038444",
+   *  "downloads":"0",
+   *  "downloads_quota": 100,
+   *  "payment_status": active,
+   *}</pre>
+   * @method Memberships#suspendPayments
+   */
+  async suspendPayments (token, id) {
+    if (!token.length) {
+      throw new Error('Token can`t defined');
+    }
+    if (!this._isValidId(id)) {
+      throw new Error('Membership subscription id isn`t defined.');
+    }
+    const response = await this._fetchRequest(
+      `${this.url}/membership-subscriptions/${id}/suspend-payment?locale=${this.locale}`,
+      token,
+      'PUT'
+    );
+    return response.json();
+  }
+
+  /**
    * Return list of downloads.
    * @param token {String} User token
    * @param id {Number} Product id
@@ -188,12 +266,27 @@ export default class Membership {
    * Return Fetch Promise
    * @param url {String} Where request go
    * @param token {String} auth user token
+   * @param method {String} request method must be uppercase, default 'GET'
+   * @param params {Object} request params object
    * @returns {Promise}
    * @method Memberships#_fetchRequest
    */
-  async _fetchRequest (url, token = false) {
-    const headers = token ? new Headers({'Authorization' : token}) : {};
-    const response = await fetch(url, {headers: headers, method: 'GET'});
+  async _fetchRequest (url, token = false, method = 'GET', params={}) {
+    const headers = {};
+    if(token){
+      headers['Authorization'] = token;
+    }
+    if(method === 'POST' || method === 'PUT' || method === 'PATCH') {
+      headers['content-type'] = 'application/x-www-form-urlencoded';
+    }
+    let responseData = {
+      method  : method,
+      headers : new Headers(headers)
+    };
+    if (Object.keys(params).length) {
+      responseData['body'] = serialize(params);
+    }
+    let response  = await fetch(url, responseData);
     if (response.status >= 400) {
       throw new Error('Bad server response');
     }
