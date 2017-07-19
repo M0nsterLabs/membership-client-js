@@ -8,6 +8,8 @@ module.exports = {
   output: {
     path: buildPath,
     filename: 'index.js',
+    libraryTarget: 'umd',
+    umdNamedDefine: true
   },
   resolve: {},
   plugins: [
