@@ -7,6 +7,7 @@
     * [new Memberships()](#new_Memberships_new)
     * [.getMembershipGroups(params)](#Memberships+getMembershipGroups) ⇒ <code>Array</code>
     * [.getMemberships(params)](#Memberships+getMemberships) ⇒ <code>Array</code>
+    * [.getMembership(params)](#Memberships+getMembership) ⇒ <code>Array</code>
     * [.getListOfSubscriptions(token, params)](#Memberships+getListOfSubscriptions) ⇒ <code>Array</code>
     * [.getSubscription(token, id)](#Memberships+getSubscription) ⇒ <code>Object</code>
     * [.reactivatePayments(token, id)](#Memberships+reactivatePayments) ⇒ <code>Object</code>
@@ -31,7 +32,7 @@ const products = new Memberships ('http://service-memberships.dev/api/v1', 'en')
 ### memberships.getMembershipGroups(params) ⇒ <code>Array</code>
 Return list of membership groups.
 
-**Kind**: instance method of <code>[Memberships](#Memberships)</code>  
+**Kind**: instance method of [<code>Memberships</code>](#Memberships)  
 **Returns**: <code>Array</code> - <pre>[
   {
     "id":"1",
@@ -50,7 +51,7 @@ Return list of membership groups.
 ### memberships.getMemberships(params) ⇒ <code>Array</code>
 Return list of all membership plans.
 
-**Kind**: instance method of <code>[Memberships](#Memberships)</code>  
+**Kind**: instance method of [<code>Memberships</code>](#Memberships)  
 **Returns**: <code>Array</code> - <pre>[
   {
    "id":"1",
@@ -66,13 +67,34 @@ Return list of all membership plans.
 | --- | --- | --- |
 | params | <code>Object</code> | Membership group parameters <pre>   {    group_id: Number   } </pre> |
 
+<a name="Memberships+getMembership"></a>
+
+### memberships.getMembership(params) ⇒ <code>Array</code>
+Return membership plan by id.
+
+**Kind**: instance method of [<code>Memberships</code>](#Memberships)  
+**Returns**: <code>Array</code> - <pre>
+  {
+   "id":"1",
+   "title":"Premium",
+   "descriptions":"Example description",
+   "group_id":"1",
+   "price": 199,
+   "max_downloads":"10",
+   "duration_days":"30",
+   }</pre>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| params | <code>number</code> | id |
+
 <a name="Memberships+getListOfSubscriptions"></a>
 
 ### memberships.getListOfSubscriptions(token, params) ⇒ <code>Array</code>
 Return list of subscriptions
      .
 
-**Kind**: instance method of <code>[Memberships](#Memberships)</code>  
+**Kind**: instance method of [<code>Memberships</code>](#Memberships)  
 **Returns**: <code>Array</code> - <pre>[
   {
    "id":"1",
@@ -103,7 +125,7 @@ Return list of subscriptions
 Return subscription
      .
 
-**Kind**: instance method of <code>[Memberships](#Memberships)</code>  
+**Kind**: instance method of [<code>Memberships</code>](#Memberships)  
 **Returns**: <code>Object</code> - <pre>{
  "id":"1",
  "membership": {
@@ -132,7 +154,7 @@ Return subscription
 ### memberships.reactivatePayments(token, id) ⇒ <code>Object</code>
 Reactivate payments
 
-**Kind**: instance method of <code>[Memberships](#Memberships)</code>  
+**Kind**: instance method of [<code>Memberships</code>](#Memberships)  
 **Returns**: <code>Object</code> - <pre>{
  "id":"1",
  "membership": {
@@ -162,7 +184,7 @@ Reactivate payments
 ### memberships.suspendPayments(token, id) ⇒ <code>Object</code>
 Suspend payments
 
-**Kind**: instance method of <code>[Memberships](#Memberships)</code>  
+**Kind**: instance method of [<code>Memberships</code>](#Memberships)  
 **Returns**: <code>Object</code> - <pre>{
  "id":"1",
  "membership": {
@@ -192,7 +214,7 @@ Suspend payments
 ### memberships.getListOfDownloads(token, id) ⇒ <code>Object</code>
 Return list of downloads.
 
-**Kind**: instance method of <code>[Memberships](#Memberships)</code>  
+**Kind**: instance method of [<code>Memberships</code>](#Memberships)  
 **Returns**: <code>Object</code> - <pre>{
 "currentPageIndex":1,
 "totalCount":11,
@@ -215,7 +237,7 @@ Return list of downloads.
 ### memberships._isValidId(id) ⇒ <code>Bool</code>
 Return Correct id or not
 
-**Kind**: instance method of <code>[Memberships](#Memberships)</code>  
+**Kind**: instance method of [<code>Memberships</code>](#Memberships)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -226,7 +248,7 @@ Return Correct id or not
 ### memberships._fetchRequest(url, token, method, params) ⇒ <code>Promise</code>
 Return Fetch Promise
 
-**Kind**: instance method of <code>[Memberships](#Memberships)</code>  
+**Kind**: instance method of [<code>Memberships</code>](#Memberships)  
 
 | Param | Type | Description |
 | --- | --- | --- |

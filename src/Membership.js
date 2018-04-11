@@ -71,6 +71,27 @@ export default class Membership {
   }
 
   /**
+   * Return membership plan by id.
+   * @param params {number} id
+   *
+   * @returns {Array} <pre>
+   *   {
+   *    "id":"1",
+   *    "title":"Premium",
+   *    "descriptions":"Example description",
+   *    "group_id":"1",
+   *    "price": 199,
+   *    "max_downloads":"10",
+   *    "duration_days":"30",
+   *    }</pre>
+   * @method Memberships#getMembership
+   */
+  async getMembership (id) {
+    const response = await this._fetchRequest(`${this.url}/memberships/${id}?locale=${this.locale}`);
+    return response.json();
+  }
+
+  /**
    * Return list of subscriptions
    .
    * @param token {String} User token
